@@ -31,7 +31,7 @@
 - Puedo crear mi propia plantilla
 - Puedo crear una plantilla desde cero o a partir de una escena
 - Con la escena cargada en el menú File/Save as Template...
-    - Cuando la aobro en el inspector me indica que escena tiene como referencia la plantilla
+    - Cuando la abro en el inspector me indica que escena tiene como referencia la plantilla
     - Se le puede poner un titulo y descripción
     - Para que salga una imagen del previo antes de cargar la plantilla, se hace en el inspector Thumbnail/ Snapshot/View/Main Camera
         - Seleccionar la vista del juego y Take a SnapShot
@@ -43,7 +43,7 @@
 ## Edición de múltiples escenas
 
 - Puedo arrastrar la segunda escena a la jerarquía para abrirla simultáneamente
-- Tengo que definir la escena activa. Puedo hacerlo desde el menú de los tres puntitos Set Acyive Scene
+- Tengo que definir la escena activa. Puedo hacerlo desde el menú de los tres puntitos Set Active Scene
 - Tengo tambien load/unload scene, remove scene
 - Al tener dos escenas abiertas, visualizo lo que hay en las dos escenas. Puedo usar el unload para dejar de visualizar una de ellas
 ---
