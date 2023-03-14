@@ -1,3 +1,0 @@
-# MECANICAS UNITY I
-
-- 
