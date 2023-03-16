@@ -168,4 +168,64 @@
 
 ## Sprite Editor Modo Multiple
 
-- 
+- Los Atlas (varios sprites en una imagen) siempre tienen que estar en potencia de 2 (luego se verá)
+    - Abro el Sprite Editor desde el inspector del Atlas 
+    - Antes lo pongo en Sprite Mode: Multiple y Full rect para optimizar la malla, que sean mallas cuadradas
+    - En el Sprite Editor:
+        - Ruedita: zoom
+        - Clic izquierdo y arrastro defino el tamaño del Sprite
+        - Bottom-right tengo el nombre, me dice el tamaño, donde esta el punto de pivote, el tipo de Pivote
+        - defino los Sprites con clic izquierdo y arrastrando, rodeando el sprite con el rectángulo y le doy a Apply
+        - Ahora, si voy a Proyecto los tengo disponible
+-----
+
+## Sprite Editor Modo Multiple Edición Auto
+
+- Top-left, Slice (corte) Type: Manual, Auto, Por Tamaño de Celda o por Cantidad de celda
+    - Auto: me recorta los sprites automáticamente. Lo que hace es trabajar sobre el canal Alpha
+    - Donde detecta contenido lo mantiene dentro del Sprite. Puedo Cambiar al canal Alpha en el Sprite Editor para comprobar si hizo bien los recortes
+    - Por ejemplo, detecta pixeles sueltos en el Atlas y genera Sprites de ellos
+        - No voy a tener la numeración correlativa
+        - Voy a tener que eliminar esos Sprites de 1 px
+    - Debo evaluar si vale la pena. Si trabaja bien, genial, si no a mano
+    - Puedo probar el Grid By Cell Count, debo indicarle cuantas columnas y filas
+        - Column and Row: por ejemplo, depende de la imagen 8x8
+        - Le doy a Slice y los recorta 
+        - Me hace un grid basado en la cantidad de celdas y no el tamaño
+        - Conviene comprobarlo con el canal Alpha, situado top-right tercer icono
+    - Para hacer por tamaño (Cell Size), necesito saber el tamaño real del Atlas
+        - Pongamos que el Atlas mide 2048x2048 y tengo 8 elementos por fila = 2048/8 = 256
+        - Si le digo 256x256 en Column y Row a Slice me hace la división de los Sprites
+----
+
+## Rendimiento y llamadas gráficas
+
+- Para Unity solo cuenta lo que entra en la cámara
+- Lo contabiliza cuando aparece en la cámara y lo mete en el cálculo gráfico
+- En el botón de Stats en la ventana de Game puedo ver SetPathsCalls: son las llamadas gráficas
+    - Si pongo una imagen en la escena dentro de la cámara sale 1, si la quito 0
+    - Significa que cuando está dentro lo almacenba en memoria, la procesa y hace todo lo que tiene que hacer
+    - Si añado los Sprites de un mismo Atlas es solo 1 llamada gráfica
+    - Si añado el mismo objeto 2 veces es solo 1 llamada
+    - Es importante mantener el número de llamadas gráficas lo más bajo posible
+----
+
+## Optimización gráfica potencias de 2
+
+- Tanto para Atlas como materiales, texturas 3D conviene trabajar con potencias de 2
+- Porque OpenGL optimiza mejor su rendimiento, y redibuja mejor por el tema DE LOS BITS (0 Y 1)
+- Siempre en potencia de 2 para facilitar el cálculo de la imagen y el recálculo del escalado de la imagen si está más lejos, más cerca
+- Conviene leer Guía de buenas prácticas para assets de arte ( documentación Unity )
+- Puede haber combinaciones de altura y ancho de potencias de 2, no tiene porque ser cuadrado
+- En general se trabaja como máximo en 2048
+----
+
+## Técnicas de optimización de Atlas de Sprites 2D
+----
+
+## Edición de Punto de Pivote
+
+- En la pantalla de escena, no puedo mover el punto de Pivote de un Sprite
+    - Hay que hacerlo desde el Sprite Editor
+    - Puedo mover el pivote desde el editor ( Apply )
+    - Le cambio el pivote desde la pestaña Pivote / Center
